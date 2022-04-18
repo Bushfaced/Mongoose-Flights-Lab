@@ -1,4 +1,4 @@
-var Flight = require('../models/flights');
+var Flight = require('./models/flights');
 
 module.exports = {
   index,
