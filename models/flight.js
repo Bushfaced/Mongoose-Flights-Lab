@@ -21,7 +21,6 @@ const flightSchema = new Schema({
     default: Date++
   }
 }, {
-  // createdAt & updatedAt properties
   timestamps: true
 });
 
