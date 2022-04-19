@@ -15,10 +15,11 @@ const flightSchema = new Schema({
   flightNo: {
     type: Number,
     min: 2,
+    max: 4
   },
   departs: {
     type: Date,
-    default: Date++
+    default: Date.now() + 365 * 24 * 60 * 60000,
   }
 }, {
   timestamps: true
@@ -35,6 +36,20 @@ const desintationSchema = new Schema({
   destinations: {
     type: [desintationSchema]
   }
+});
+
+const ticketSchema = new Schema({
+  seat: {
+    type: String, 
+    match: /[A-F][1-9]\d?/
+  },
+  price: {
+    type: Number,
+    min: 0
+  },
+  flight: {
+    type: Schema.Types.ObjectId, ref: 'Flight'
+  },
 });
 // User Stories:
 
