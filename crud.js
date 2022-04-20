@@ -1,12 +1,12 @@
 require('dotenv').config();
 require('./config/database');
 
-const Movie = require('./models/movie');
-const Performer = require('./models/performer');
+const Flight = require('./models/flight');
+// const Performer = require('./models/performer');
 
-let movies;
+let flights;
 
-Movie.find({}, function(err, movieDocs) {
-  movies = movieDocs;
+Flight.find({}, function(err, flightDocs) {
+  flights = flightDocs;
 });
 
