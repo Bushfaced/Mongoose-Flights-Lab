@@ -9,8 +9,6 @@ require('./config/database');
 
 var indexRouter = require('./routes/index');
 var flightsRouter = require('./routes/flights');
-// var reviewsRouter = require('./routes/reviews');
-// var performersRouter = require('./routes/performers');
 
 var app = express();
 
@@ -26,11 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/flights', flightsRouter);
-// Not all routes begin with /movies, therefore
-// mount to root for max flexibility
-// app.use('/', reviewsRouter);
-// Yup, another related resource - mount to root
-// app.use('/', performersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

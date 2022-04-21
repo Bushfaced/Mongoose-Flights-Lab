@@ -3,10 +3,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // const reviewSchema = new Schema({
-//   content: {
-//     type: String,
-//     match: /.{5,}/
-//   },
 //   rating: {
 //     type: Number,
 //     min: 1,
@@ -19,19 +15,28 @@ const Schema = mongoose.Schema;
 // });
 
 const flightSchema = new Schema({
-  title: {
+  airline: {
     type: String,
-    required: true
+    enum: ['American', 'Southwest', 'United']
   },
+  airport: {
+    type: String,
+    enum: ['Aus', 'DFW', 'DEN', 'LAX', 'SAN'],
+    default: 'DEN'
+  },
+  content: {
+    type: Number,
+    match: /(10|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9])/
+  },
+  // title: {
+  //   type: String,
+  //   required: true
+  // },
   // releaseYear: {
   //   type: Number,
   //   default: function() {
   //     return new Date().getFullYear();
   //   }
-  // },
-  // mpaaRating: {
-  //   type: String,
-  //   enum: ['G', 'PG', 'PG-13', 'R']
   // },
   // cast: [{type: Schema.Types.ObjectId, ref: 'Performer'}],
   // nowShowing: {
