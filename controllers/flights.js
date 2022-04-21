@@ -8,6 +8,17 @@ module.exports = {
     show,
 };
 
+
+function index(req, res) {
+    Flight.find({}, function(err, flights){
+        res.render('flights/index', { flights });
+    });
+}
+
+function newFlight(req, res) {
+    res.render('flights/new');
+}
+
 function show(req, res) {
     Flight.findById(req.params.id, function(err, flight) {
         Ticket.find({flightId: flight._id}, 
@@ -28,12 +39,5 @@ function create(req, res) {
     });
 }
 
-function newFlight(req, res) {
-    res.render('flights/new');
-}
 
-function index(req, res) {
-    Flight.find({}, function(err, flights){
-        res.render('flights/index', { flights });
-    });
-}
+
