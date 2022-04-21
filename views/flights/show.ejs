@@ -1,0 +1,84 @@
+<%- include('../partials/header') %>
+
+<section id="show-page">
+  <div>Flight: </div>
+  <div><%= flight.flightNo %></div>
+  <div></div>
+  <div>Airline:</div>
+  <div><%= flight.airline %></div>
+  <div>Departure from:</div>
+  <div><%= flight.airport %></div>
+  <div>Departure date and time:</div>
+  <div><%= flight.departs %></div>
+
+</section>
+<br>
+<br>
+<h2>Destinations</h2>
+<form method="POST"
+  action="/flights/<%= flight._id %>/destinations"> 
+  <label>Airport:
+    <select name="airport">
+      <option value="AUS">AUS</option>
+      <option value="DFW">DFW</option>
+      <option value="DEN">DEN</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+    </select>
+  </label><br>
+  <label>Arrival:</label>
+  <input type="datetime-local" name="arrival">
+  </label><br>
+  <input type="submit" value="Add Destination">
+</form>
+
+<% if (flight.destinations.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Airport</th>
+          <th>Arrival</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% flight.destinations.sort(function(a, b) { %>
+            <% return a.arrival - b.arrival %>
+          <% }) %>
+        <% flight.destinations.forEach(function(d) { %>
+          <tr>
+            <td><%= d.airport %></td>
+            <td><%= d.arrival %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <h5>No Arrival Date</h5>
+  <% } %>
+  <br>
+  <h4>Purchased Tickets</h4>
+
+  <% if (tickets.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Seat</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tickets.forEach(function(t) { %>
+        <tr></tr>
+          <td><%= t.seat %></td>
+          <td><%= t.price %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Tickets Purchased</h5>
+<% } %>
+  <br>
+  <a href="/flights/<%= flight._id %>/tickets/new">Purchase a ticket</a>
+
+<%- include('../partials/footer') %>
