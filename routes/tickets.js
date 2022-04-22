@@ -3,7 +3,7 @@ var router = express.Router();
 ticketsCtrl = require('../controllers/tickets');
 
 
-router.get('/:id/new', ticketsCtrl.new);
+router.get('/flights/:id/tickets/new', ticketsCtrl.new);
 router.post('/flights/:id/tickets', ticketsCtrl.create);
 
 module.exports = router;
